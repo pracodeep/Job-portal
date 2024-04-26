@@ -10,7 +10,7 @@ const errorHandler = require("./middleware/error");
 //import routes
 
 const authRoutes=require("./routes/authRoutes");
-const { signin } = require("./controllers/authcontroller");
+
 
 
 
