@@ -7,6 +7,10 @@ require("dotenv").config();
 var cors = require('cors');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
+//import routes
+
+const authRoutes=require("./routes/authRoutes");
+const { signin } = require("./controllers/authcontroller");
 
 
 
@@ -28,12 +32,13 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(cors());
 
-//ROUTES
-app.get('/',(req,res)=>{
-    res.send("Hello from node js")
-})
+//ROUTES MIDDLEWARE
+// app.get('/',(req,res)=>{
+//     res.send("Hello from node js")
+// })
 
 // error middleware
+app.use("/api",authRoutes)
 app.use(errorHandler);
 
 //port
