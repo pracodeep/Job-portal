@@ -5,19 +5,20 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 var cors = require('cors');
+
+
+
+
+// import routes
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
-//import routes
-
-const authRoutes=require("./routes/authRoutes");
-
-
-
-
 
 //database connection
 mongoose.connect(process.env.DATABASE, {
-
+    
 })
     .then(() => console.log("DB connected"))
     .catch((err) => console.log(err));
@@ -32,13 +33,15 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(cors());
 
+
 //ROUTES MIDDLEWARE
-// app.get('/',(req,res)=>{
-//     res.send("Hello from node js")
+// app.get('/', (req, res) => {
+//     res.send("Hello from Node Js");
 // })
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 // error middleware
-app.use("/api",authRoutes)
 app.use(errorHandler);
 
 //port
