@@ -1,15 +1,16 @@
 import { Avatar, Box } from '@mui/material'
 import React, { useEffect } from 'react'
-import Footer from '../component/Footer'
-import Navbar from '../component/Navbar'
+import Footer from '../Componenet/Footer'
+import Navbar from '../Componenet/Navbar'
 import LockClockOutlined from '@mui/icons-material/LockClockOutlined'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux'
-import { userSignInAction } from '../redux/actions/userAction'
+import { useDispatch ,useSelector} from 'react-redux'
+
 import { useNavigate } from 'react-router-dom'
+import { userSignInAction } from '../redux/actions/userAction'
 
 const validationSchema = yup.object({
     email: yup
@@ -27,20 +28,11 @@ const validationSchema = yup.object({
 const LogIn = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isAuthenticated, userInfo } = useSelector(state => state.signIn);
+    const { isAuthenticated } = useSelector(state => state.signIn);
     useEffect(() => {
-
         if (isAuthenticated) {
-            if (userInfo.role === 1) {
-                navigate('/admin/dashboard');
-            } else {
-                navigate('/user/dashboard');
-            }
+            navigate('/admin/dashboard');
         }
-
-        // if (isAuthenticated) {
-        //     navigate('/user/dashboard');
-        // }
     }, [isAuthenticated])
 
     const formik = useFormik({
@@ -60,22 +52,15 @@ const LogIn = () => {
     return (
         <>
             <Navbar />
-            <Box sx={{ minHeight: 'calc(100vh - 140px)', display: "flex", alignItems: "center", justifyContent: "center", bgcolor: "primary.white" }}>
+            <Box sx={{ height: '81vh', display: "flex", alignItems: "center", justifyContent: "center" }}>
 
 
                 <Box onSubmit={formik.handleSubmit} component="form" className='form_style border-style' >
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
                         <Avatar sx={{ m: 1, bgcolor: "primary.main", mb: 3 }}>
-                            <LockClockOutlined sx={{ color: 'white' }} />
+                            <LockClockOutlined />
                         </Avatar>
-                        <TextField
-                            sx={{
-                                mb: 3,
-                                "& .MuiInputBase-root": {
-                                    color: 'text.secondary',
-                                },
-                                fieldset: { borderColor: "rgb(231, 235, 240)" }
-                            }}
+                        <TextField sx={{ mb: 3 }}
                             fullWidth
                             id="email"
                             label="E-mail"
@@ -83,7 +68,6 @@ const LogIn = () => {
                             InputLabelProps={{
                                 shrink: true,
                             }}
-
                             placeholder="E-mail"
                             value={formik.values.email}
                             onChange={formik.handleChange}
@@ -91,14 +75,7 @@ const LogIn = () => {
                             error={formik.touched.email && Boolean(formik.errors.email)}
                             helperText={formik.touched.email && formik.errors.email}
                         />
-                        <TextField
-                            sx={{
-                                mb: 3,
-                                "& .MuiInputBase-root": {
-                                    color: 'text.secondary'
-                                },
-                                fieldset: { borderColor: "rgb(231, 235, 240)" }
-                            }}
+                        <TextField sx={{ mb: 3 }}
                             fullWidth
                             id="password"
                             name="password"

@@ -1,58 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import {
-    deleteJobReducer,
-    loadJobReducer,
-    loadJobSingleReducer,
-    registerAjobReducer,
-    updateJobReducer
-} from './reducers/jobReducer';
-
-import {
-    createJobTypeReducer,
-    loadJobTypeReducer
-} from './reducers/jobTypeReducer';
-
-import {
-    allUserReducer,
-    userApplyJobReducer,
-    userReducerLogout,
-    userReducerProfile,
-    userReducerSignIn,
-    userReducerSignUp
-} from './reducers/userReducer';
-
-import { modeReducer } from './reducers/themeModeReducer';
-
+import { loadJobReducer } from './reducers/Jobreducer';
+import { loadJobTypeReducer } from './reducers/jobTypeReducer';
+import {userReducerSignIn} from './reducers/userReducer'
 //combine reducers
 const reducer = combineReducers({
     loadJobs: loadJobReducer,
     jobTypeAll: loadJobTypeReducer,
-    signIn: userReducerSignIn,
-    logOut: userReducerLogout,
-    userProfile: userReducerProfile,
-    singleJob: loadJobSingleReducer,
-    userJobApplication: userApplyJobReducer,
-    allUsers: allUserReducer,
-    signUp: userReducerSignUp,
-    mode: modeReducer,
-    registerJob: registerAjobReducer,
-    deleteJob: deleteJobReducer,
-    createJobType: createJobTypeReducer,
-    updateJob: updateJobReducer
-
+    signIn: userReducerSignIn
 });
 
 
 //initial state
-let initialState = {
-    signIn: {
-        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-    },
-    mode: {
-        mode: "light"
-    }
+let initialState = {  signIn: 
+    {
+    userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+}
 };
 const middleware = [thunk];
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
