@@ -1,4 +1,3 @@
-
 const ErrorResponse = require('../utils/errorResponse');
 const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
@@ -8,7 +7,7 @@ exports.isAuthenticated = async (req, res, next) => {
     const { token } = req.cookies;
     // Make sure token exists
     if (!token) {
-        return next(new ErrorResponse('Not authorized to access this route', 401));
+        return next(new ErrorResponse('You must log in!', 401));
     }
 
     try {
@@ -18,7 +17,7 @@ exports.isAuthenticated = async (req, res, next) => {
         next();
 
     } catch (error) {
-        return next(new ErrorResponse('Not authorized to access this route', 401));
+        return next(new ErrorResponse('You must log in!', 401));
     }
 }
 

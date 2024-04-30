@@ -13,9 +13,9 @@
   "author": "Pradeep singh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pracodeep/Job-portal/issues"
+    "url": "https://github.com/pracodeep/Job-portal.git/issue"
   },
-  "homepage": "https://github.com/pracodeep/Job-portal#readme",
+  "homepage": "hhttps://github.com/pracodeep/Job-portal#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -29,3 +29,6 @@
     "nodemon": "^3.1.0"
   }
 }
+
+
+https://github.com/pracodeep/Job-portal#readme

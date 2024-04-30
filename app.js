@@ -12,6 +12,8 @@ var cors = require('cors');
 // import routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const jobRoute=require('./routes/jobsRoutes')
+const jobTypeRoute=require('./routes/jobsTypesRoutes')
 
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
@@ -40,7 +42,8 @@ app.use(cors());
 // })
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
-
+app.use('/api', jobTypeRoute);
+app.use('/api', jobRoute);
 // error middleware
 app.use(errorHandler);
 
